@@ -3,8 +3,6 @@ import UIKit
 import NovvyAds
 import GoogleMobileAds
 
-// MARK: - Rewarded Handler
-
 class NovvyAdMobRewardedHandler: NSObject, GADMediationRewardedAd, NovvyRewardedAdDelegate {
 
     private let novvyAd: NovvyRewardedAd
@@ -22,8 +20,6 @@ class NovvyAdMobRewardedHandler: NSObject, GADMediationRewardedAd, NovvyRewarded
         novvyAd.load()
     }
 
-    // MARK: GADMediationRewardedAd
-
     func present(from viewController: UIViewController) {
         if novvyAd.isReady {
             novvyAd.show(from: viewController)
@@ -34,8 +30,6 @@ class NovvyAdMobRewardedHandler: NSObject, GADMediationRewardedAd, NovvyRewarded
             eventDelegate?.didFailToPresentWithError(error)
         }
     }
-
-    // MARK: NovvyRewardedAdDelegate
 
     func rewardedAdDidLoad(_ ad: NovvyRewardedAd) {
         eventDelegate = loadCompletionHandler?(self, nil)

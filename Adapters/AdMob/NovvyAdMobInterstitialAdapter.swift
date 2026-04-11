@@ -3,7 +3,6 @@ import UIKit
 import NovvyAds
 import GoogleMobileAds
 
-/// AdMob mediation adapter for NovvyAds interstitial ads.
 public class NovvyAdMobMediationAdapter: GADMediationAdapter {
 
     public static func adapterVersion() -> GADVersionNumber {
@@ -60,8 +59,6 @@ public class NovvyAdMobMediationAdapter: GADMediationAdapter {
     }
 }
 
-// MARK: - Interstitial Handler
-
 class NovvyAdMobInterstitialHandler: NSObject, GADMediationInterstitialAd, NovvyInterstitialAdDelegate {
 
     private let novvyAd: NovvyInterstitialAd
@@ -79,8 +76,6 @@ class NovvyAdMobInterstitialHandler: NSObject, GADMediationInterstitialAd, Novvy
         novvyAd.load()
     }
 
-    // MARK: GADMediationInterstitialAd
-
     func present(from viewController: UIViewController) {
         if novvyAd.isReady {
             novvyAd.show(from: viewController)
@@ -91,8 +86,6 @@ class NovvyAdMobInterstitialHandler: NSObject, GADMediationInterstitialAd, Novvy
             eventDelegate?.didFailToPresentWithError(error)
         }
     }
-
-    // MARK: NovvyInterstitialAdDelegate
 
     func interstitialAdDidLoad(_ ad: NovvyInterstitialAd) {
         eventDelegate = loadCompletionHandler?(self, nil)
