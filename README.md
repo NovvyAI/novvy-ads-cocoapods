@@ -10,7 +10,7 @@ NovvyAds iOS SDK provides programmatic advertising capabilities for iOS apps, su
 
 ## Installation
 
-NovvyAds is distributed via [CocoaPods](https://cocoapods.org).
+Install NovvyAds via CocoaPods
 
 ### NovvyAds SDK Only (without AdMob)
 
