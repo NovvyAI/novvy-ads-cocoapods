@@ -3,29 +3,37 @@ import UIKit
 import NovvyAds
 import GoogleMobileAds
 
-public class NovvyAdMobMediationAdapter: GADMediationAdapter {
+@objc(NovvyAdMobMediationAdapter)
+public class NovvyAdMobMediationAdapter: NSObject, MediationAdapter {
 
-    public static func adapterVersion() -> GADVersionNumber {
-        GADVersionNumber(majorVersion: 1, minorVersion: 0, patchVersion: 0)
+    private var interstitialHandler: NovvyAdMobInterstitialHandler?
+    private var rewardedHandler: NovvyAdMobRewardedHandler?
+
+    public required override init() {
+        super.init()
     }
 
-    public static func adSDKVersion() -> GADVersionNumber {
-        GADVersionNumber(majorVersion: 1, minorVersion: 0, patchVersion: 0)
+    public static func adapterVersion() -> VersionNumber {
+        VersionNumber(majorVersion: 1, minorVersion: 0, patchVersion: 0)
     }
 
-    public static func networkExtrasClass() -> (any GADAdNetworkExtras.Type)? {
+    public static func adSDKVersion() -> VersionNumber {
+        VersionNumber(majorVersion: 1, minorVersion: 0, patchVersion: 0)
+    }
+
+    public static func networkExtrasClass() -> (any AdNetworkExtras.Type)? {
         nil
     }
 
-    public override static func setUpWith(
-        _ configuration: GADMediationServerConfiguration,
+    public static func setUp(
+        with configuration: MediationServerConfiguration,
         completionHandler: @escaping GADMediationAdapterSetUpCompletionBlock
     ) {
         completionHandler(nil)
     }
 
-    public override func loadInterstitial(
-        for adConfiguration: GADMediationInterstitialAdConfiguration,
+    public func loadInterstitial(
+        for adConfiguration: MediationInterstitialAdConfiguration,
         completionHandler: @escaping GADMediationInterstitialLoadCompletionHandler
     ) {
         let adUnitId = adConfiguration.credentials.settings["parameter"] as? String ?? ""
@@ -38,11 +46,12 @@ public class NovvyAdMobMediationAdapter: GADMediationAdapter {
         }
 
         let handler = NovvyAdMobInterstitialHandler(adUnitId: adUnitId)
+        self.interstitialHandler = handler
         handler.load(completionHandler: completionHandler)
     }
 
-    public override func loadRewardedAd(
-        for adConfiguration: GADMediationRewardedAdConfiguration,
+    public func loadRewardedAd(
+        for adConfiguration: MediationRewardedAdConfiguration,
         completionHandler: @escaping GADMediationRewardedLoadCompletionHandler
     ) {
         let adUnitId = adConfiguration.credentials.settings["parameter"] as? String ?? ""
@@ -55,15 +64,16 @@ public class NovvyAdMobMediationAdapter: GADMediationAdapter {
         }
 
         let handler = NovvyAdMobRewardedHandler(adUnitId: adUnitId)
+        self.rewardedHandler = handler
         handler.load(completionHandler: completionHandler)
     }
 }
 
-class NovvyAdMobInterstitialHandler: NSObject, GADMediationInterstitialAd, NovvyInterstitialAdDelegate {
+class NovvyAdMobInterstitialHandler: NSObject, MediationInterstitialAd, NovvyInterstitialAdDelegate {
 
     private let novvyAd: NovvyInterstitialAd
     private var loadCompletionHandler: GADMediationInterstitialLoadCompletionHandler?
-    private var eventDelegate: GADMediationInterstitialAdEventDelegate?
+    private var eventDelegate: MediationInterstitialAdEventDelegate?
 
     init(adUnitId: String) {
         self.novvyAd = NovvyInterstitialAd(adUnitId: adUnitId)

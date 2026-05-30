@@ -3,11 +3,11 @@ import UIKit
 import NovvyAds
 import GoogleMobileAds
 
-class NovvyAdMobRewardedHandler: NSObject, GADMediationRewardedAd, NovvyRewardedAdDelegate {
+class NovvyAdMobRewardedHandler: NSObject, MediationRewardedAd, NovvyRewardedAdDelegate {
 
     private let novvyAd: NovvyRewardedAd
     private var loadCompletionHandler: GADMediationRewardedLoadCompletionHandler?
-    private var eventDelegate: GADMediationRewardedAdEventDelegate?
+    private var eventDelegate: MediationRewardedAdEventDelegate?
 
     init(adUnitId: String) {
         self.novvyAd = NovvyRewardedAd(adUnitId: adUnitId)
