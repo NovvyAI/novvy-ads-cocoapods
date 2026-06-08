@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'NovvyAdsAdMob'
-  s.version      = '1.0.0-beta.11'
+  s.version      = '1.0.0-beta.12'
   s.summary      = 'NovvyAds AdMob mediation adapter.'
   s.description  = 'AdMob custom event adapter that bridges Google Mobile Ads SDK to NovvyAds inventory.'
   s.homepage     = 'https://github.com/NovvyAI/novvy-ads-cocoapods'
