@@ -18,10 +18,4 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |core|
     core.vendored_frameworks = 'NovvyAds.xcframework'
   end
-
-  s.subspec 'AdMob' do |admob|
-    admob.dependency 'NovvyAds/Core'
-    admob.dependency 'Google-Mobile-Ads-SDK', '~> 12.0'
-    admob.source_files = 'Adapters/AdMob/**/*.swift'
-  end
 end

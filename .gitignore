@@ -60,3 +60,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Local development: symlink/copy of NovvyAds.xcframework for local pod :path testing.
+# Release artifact is delivered via GitHub Releases zip (see NovvyAds.podspec :http source),
+# so this file must never be committed.
+NovvyAds.xcframework
