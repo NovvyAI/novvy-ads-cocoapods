@@ -95,6 +95,7 @@ class NovvyAdMobInterstitialHandler: NSObject, MediationInterstitialAd, NovvyInt
         self.novvyAd = NovvyInterstitialAd(adUnitId: adUnitId)
         super.init()
         if bidFloor > 0 { self.novvyAd.bidFloor = bidFloor }
+        self.novvyAd.bidSource = "admob"
         self.novvyAd.delegate = self
     }
 

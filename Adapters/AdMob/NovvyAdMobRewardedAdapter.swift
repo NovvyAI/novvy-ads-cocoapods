@@ -13,6 +13,7 @@ class NovvyAdMobRewardedHandler: NSObject, MediationRewardedAd, NovvyRewardedAdD
         self.novvyAd = NovvyRewardedAd(adUnitId: adUnitId)
         super.init()
         if bidFloor > 0 { self.novvyAd.bidFloor = bidFloor }
+        self.novvyAd.bidSource = "admob"
         self.novvyAd.rewardedDelegate = self
     }
 
