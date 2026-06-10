@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'NovvyAds'
-  s.version      = '1.0.0-beta.12'
+  s.version      = '1.0.0-beta.13'
   s.summary      = 'NovvyAds iOS SDK for programmatic advertising.'
   s.description  = 'NovvyAds SDK provides interstitial, rewarded, banner, and feed ad formats for iOS apps.'
   s.homepage     = 'https://github.com/NovvyAI/novvy-ads-cocoapods'
