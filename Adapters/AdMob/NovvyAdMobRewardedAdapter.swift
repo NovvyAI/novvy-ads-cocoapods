@@ -9,9 +9,10 @@ class NovvyAdMobRewardedHandler: NSObject, MediationRewardedAd, NovvyRewardedAdD
     private var loadCompletionHandler: GADMediationRewardedLoadCompletionHandler?
     private var eventDelegate: MediationRewardedAdEventDelegate?
 
-    init(adUnitId: String) {
+    init(adUnitId: String, bidFloor: Double) {
         self.novvyAd = NovvyRewardedAd(adUnitId: adUnitId)
         super.init()
+        if bidFloor > 0 { self.novvyAd.bidFloor = bidFloor }
         self.novvyAd.rewardedDelegate = self
     }
 
