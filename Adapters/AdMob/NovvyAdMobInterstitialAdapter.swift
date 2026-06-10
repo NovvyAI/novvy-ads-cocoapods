@@ -32,11 +32,21 @@ public class NovvyAdMobMediationAdapter: NSObject, MediationAdapter {
         completionHandler(nil)
     }
 
+    private func parseAdUnitId(from parameter: String?) -> String {
+        guard let parameter = parameter, !parameter.isEmpty else { return "" }
+        if let data = parameter.data(using: .utf8),
+           let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+           let adUnitId = json["adUnitId"] as? String {
+            return adUnitId
+        }
+        return parameter
+    }
+
     public func loadInterstitial(
         for adConfiguration: MediationInterstitialAdConfiguration,
         completionHandler: @escaping GADMediationInterstitialLoadCompletionHandler
     ) {
-        let adUnitId = adConfiguration.credentials.settings["parameter"] as? String ?? ""
+        let adUnitId = parseAdUnitId(from: adConfiguration.credentials.settings["parameter"] as? String)
         guard !adUnitId.isEmpty else {
             let error = NSError(domain: "ai.novvy.admob", code: 0, userInfo: [
                 NSLocalizedDescriptionKey: "Missing Ad Unit ID in AdMob custom event parameter"
@@ -54,7 +64,7 @@ public class NovvyAdMobMediationAdapter: NSObject, MediationAdapter {
         for adConfiguration: MediationRewardedAdConfiguration,
         completionHandler: @escaping GADMediationRewardedLoadCompletionHandler
     ) {
-        let adUnitId = adConfiguration.credentials.settings["parameter"] as? String ?? ""
+        let adUnitId = parseAdUnitId(from: adConfiguration.credentials.settings["parameter"] as? String)
         guard !adUnitId.isEmpty else {
             let error = NSError(domain: "ai.novvy.admob", code: 0, userInfo: [
                 NSLocalizedDescriptionKey: "Missing Ad Unit ID in AdMob custom event parameter"
