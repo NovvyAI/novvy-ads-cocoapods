@@ -9,12 +9,11 @@ class NovvyAdMobRewardedHandler: NSObject, MediationRewardedAd, NovvyRewardedAdD
     private var loadCompletionHandler: GADMediationRewardedLoadCompletionHandler?
     private var eventDelegate: MediationRewardedAdEventDelegate?
 
-    init(adUnitId: String, bidFloor: Double) {
+    init(adUnitId: String) {
         self.novvyAd = NovvyRewardedAd(adUnitId: adUnitId)
         super.init()
-        if bidFloor > 0 { self.novvyAd.bidFloor = bidFloor }
         self.novvyAd.bidSource = "admob"
-        self.novvyAd.rewardedDelegate = self
+        self.novvyAd.delegate = self
     }
 
     func load(completionHandler: @escaping GADMediationRewardedLoadCompletionHandler) {
@@ -56,10 +55,6 @@ class NovvyAdMobRewardedHandler: NSObject, MediationRewardedAd, NovvyRewardedAdD
         eventDelegate?.didEndVideo()
         eventDelegate?.willDismissFullScreenView()
         eventDelegate?.didDismissFullScreenView()
-    }
-
-    func rewardedAdDidClick(_ ad: NovvyRewardedAd) {
-        eventDelegate?.reportClick()
     }
 
     func rewardedAd(_ ad: NovvyRewardedAd, didEarnReward reward: NovvyReward) {

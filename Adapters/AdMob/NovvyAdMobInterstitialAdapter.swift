@@ -34,18 +34,16 @@ public class NovvyAdMobMediationAdapter: NSObject, MediationAdapter {
 
     private struct ServerParams {
         let adUnitId: String
-        let bidFloor: Double
     }
 
     private func parseServerParams(from parameter: String?) -> ServerParams {
-        guard let parameter = parameter, !parameter.isEmpty else { return ServerParams(adUnitId: "", bidFloor: 0) }
+        guard let parameter = parameter, !parameter.isEmpty else { return ServerParams(adUnitId: "") }
         if let data = parameter.data(using: .utf8),
            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
             let adUnitId = json["adUnitId"] as? String ?? ""
-            let bidFloor = json["bidFloor"] as? Double ?? 0
-            return ServerParams(adUnitId: adUnitId, bidFloor: bidFloor)
+            return ServerParams(adUnitId: adUnitId)
         }
-        return ServerParams(adUnitId: parameter, bidFloor: 0)
+        return ServerParams(adUnitId: parameter)
     }
 
     public func loadInterstitial(
@@ -61,7 +59,7 @@ public class NovvyAdMobMediationAdapter: NSObject, MediationAdapter {
             return
         }
 
-        let handler = NovvyAdMobInterstitialHandler(adUnitId: params.adUnitId, bidFloor: params.bidFloor)
+        let handler = NovvyAdMobInterstitialHandler(adUnitId: params.adUnitId)
         self.interstitialHandler = handler
         handler.load(completionHandler: completionHandler)
     }
@@ -79,7 +77,7 @@ public class NovvyAdMobMediationAdapter: NSObject, MediationAdapter {
             return
         }
 
-        let handler = NovvyAdMobRewardedHandler(adUnitId: params.adUnitId, bidFloor: params.bidFloor)
+        let handler = NovvyAdMobRewardedHandler(adUnitId: params.adUnitId)
         self.rewardedHandler = handler
         handler.load(completionHandler: completionHandler)
     }
@@ -91,10 +89,9 @@ class NovvyAdMobInterstitialHandler: NSObject, MediationInterstitialAd, NovvyInt
     private var loadCompletionHandler: GADMediationInterstitialLoadCompletionHandler?
     private var eventDelegate: MediationInterstitialAdEventDelegate?
 
-    init(adUnitId: String, bidFloor: Double) {
+    init(adUnitId: String) {
         self.novvyAd = NovvyInterstitialAd(adUnitId: adUnitId)
         super.init()
-        if bidFloor > 0 { self.novvyAd.bidFloor = bidFloor }
         self.novvyAd.bidSource = "admob"
         self.novvyAd.delegate = self
     }
@@ -136,9 +133,5 @@ class NovvyAdMobInterstitialHandler: NSObject, MediationInterstitialAd, NovvyInt
     func interstitialAdDidClose(_ ad: NovvyInterstitialAd) {
         eventDelegate?.willDismissFullScreenView()
         eventDelegate?.didDismissFullScreenView()
-    }
-
-    func interstitialAdDidClick(_ ad: NovvyInterstitialAd) {
-        eventDelegate?.reportClick()
     }
 }
