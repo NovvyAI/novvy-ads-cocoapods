@@ -13,9 +13,5 @@ Pod::Spec.new do |s|
     :http => "https://github.com/NovvyAI/novvy-ads-cocoapods/releases/download/v#{s.version}/NovvyAds.xcframework.zip"
   }
 
-  s.default_subspecs = ['Core']
-
-  s.subspec 'Core' do |core|
-    core.vendored_frameworks = 'NovvyAds.xcframework'
-  end
+  s.vendored_frameworks = 'NovvyAds.xcframework'
 end
