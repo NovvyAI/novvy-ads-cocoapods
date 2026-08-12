@@ -17,7 +17,7 @@ Add the following to your `Podfile`:
 ```ruby
 source 'https://github.com/NovvyAI/novvy-ads-cocoapods.git'
 
-pod 'NovvyAds', '~> 1.1.4'
+pod 'NovvyAds', '1.1.5-beta.1'
 ```
 
 Then run:
