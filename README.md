@@ -18,7 +18,7 @@ CocoaPods will reject one if you add it.
 
 ```ruby
 target 'YourApp' do
-  pod 'NovvyAds', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.0-beta.1/NovvyAds.podspec'
+  pod 'NovvyAds', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.0/NovvyAds.podspec'
 end
 ```
 
@@ -34,8 +34,8 @@ target 'YourApp' do
   # The symptom of getting this wrong is not a build error; it is a silent no-fill.
   use_frameworks! :linkage => :static
 
-  pod 'NovvyAds',      :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.0-beta.1/NovvyAds.podspec'
-  pod 'NovvyAdsAdMob', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/admob-v1.2.0-beta.1.0/NovvyAdsAdMob.podspec'
+  pod 'NovvyAds',      :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.0/NovvyAds.podspec'
+  pod 'NovvyAdsAdMob', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/admob-v1.2.0.0/NovvyAdsAdMob.podspec'
 end
 ```
 
