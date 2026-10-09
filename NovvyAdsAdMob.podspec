@@ -6,7 +6,7 @@
 #
 # Mirrors Android's NovvyAdMobAdapter, which composes the same two values out of gradle.properties
 # as `${sdk.version}.${mediation.adapter.revision}`.
-novvy_ads_version = '1.2.0'
+novvy_ads_version = '1.2.1'
 
 # Bumped when the adapter changes on its own; reset to 0 whenever novvy_ads_version moves.
 #
