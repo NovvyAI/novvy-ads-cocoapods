@@ -34,7 +34,7 @@ public final class NovvyAdMobMediationAdapter: NSObject, MediationAdapter {
     /// pod compiles with whatever the host's build settings are, and nothing injects the podspec
     /// version into it. Reported to AdMob only for diagnostics, so drift here costs a confusing
     /// dashboard line, nothing functional.
-    private static let adapterVersionString = "1.1.5"
+    private static let adapterVersionString = "1.2.3.0"
 
     public override init() {
         super.init()

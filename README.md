@@ -18,7 +18,7 @@ CocoaPods will reject one if you add it.
 
 ```ruby
 target 'YourApp' do
-  pod 'NovvyAds', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.0/NovvyAds.podspec'
+  pod 'NovvyAds', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.3/NovvyAds.podspec'
 end
 ```
 
@@ -34,8 +34,8 @@ target 'YourApp' do
   # The symptom of getting this wrong is not a build error; it is a silent no-fill.
   use_frameworks! :linkage => :static
 
-  pod 'NovvyAds',      :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.0/NovvyAds.podspec'
-  pod 'NovvyAdsAdMob', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/admob-v1.2.0.0/NovvyAdsAdMob.podspec'
+  pod 'NovvyAds',      :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/v1.2.3/NovvyAds.podspec'
+  pod 'NovvyAdsAdMob', :podspec => 'https://raw.githubusercontent.com/NovvyAI/novvy-ads-cocoapods/admob-v1.2.3.0/NovvyAdsAdMob.podspec'
 end
 ```
 
@@ -61,7 +61,7 @@ To move to a new version, edit the URLs and run `pod update NovvyAds NovvyAdsAdM
 `NovvyAds` uses three segments. `NovvyAdsAdMob` appends a fourth:
 
 ```text
-NovvyAdsAdMob 1.2.0.3
+NovvyAdsAdMob 1.2.3.0
               └───┘ └ adapter revision
                 └ the NovvyAds version this adapter is built against
 ```
@@ -81,6 +81,7 @@ adapter code changed.
 | `v1.2.0-beta.2` | `admob-v1.2.0-beta.2.0` | core released; revision resets |
 | `v1.2.0` | `admob-v1.2.0.0` | 1.2.0 ships |
 | `v1.2.0` | `admob-v1.2.0.1` | adapter fix on the released core |
+| `v1.2.3` | `admob-v1.2.3.0` | matching pair for core 1.2.3; revision resets |
 
 ## License
 
